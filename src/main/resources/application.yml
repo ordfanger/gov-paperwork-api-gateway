@@ -5,3 +5,10 @@ spring:
       discovery:
         locator:
           enabled: true
+      routes:
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=//**
+          filters:
+            - RewritePath=/(?<path>.*), /$\{path}
