@@ -6,9 +6,9 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: auth-service
-          uri: lb://auth-service
+        - id: management-service
+          uri: lb://management-service
           predicates:
-            - Path=//**
+            - Path=/management/**
           filters:
-            - RewritePath=/(?<path>.*), /$\{path}
+            - RewritePath=/management/(?<path>.*), /$\{path}
