@@ -1,3 +1,7 @@
+gov:
+  paperwork:
+    auth-validation-url: http://management-service/v1/introspect
+
 spring:
   cloud:
     gateway:
@@ -12,3 +16,11 @@ spring:
             - Path=/management/**
           filters:
             - RewritePath=/management/(?<path>.*), /$\{path}
+
+        - id: applicants-service
+          uri: lb://applicants-service
+          predicates:
+            - Path=/applicants/**
+          filters:
+            - RewritePath=/applicants/(?<path>.*), /$\{path}
+            - AuthFilter
