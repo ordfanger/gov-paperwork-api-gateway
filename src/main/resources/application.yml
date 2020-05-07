@@ -22,5 +22,7 @@ spring:
           predicates:
             - Path=/applicants/**
           filters:
+            - name: AuthFilter
+              args:
+                allowed: /applicants/v1/register
             - RewritePath=/applicants/(?<path>.*), /$\{path}
-            - AuthFilter
